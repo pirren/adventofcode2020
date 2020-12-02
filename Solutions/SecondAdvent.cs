@@ -11,8 +11,7 @@ namespace Client.Solutions
         internal static void Solve(string[] data)
         {
             List<Password> passwords = BuildPasswords(data);
-            var result = passwords.Where(p => (p.Phrase[p.Policy.FirstPosition - 1].ToString() == p.Policy.Char && p.Phrase[p.Policy.SecondPosition - 1].ToString() != p.Policy.Char) 
-            || (p.Phrase[p.Policy.FirstPosition - 1].ToString() != p.Policy.Char && p.Phrase[p.Policy.SecondPosition - 1].ToString() == p.Policy.Char)).Count();
+            var result = passwords.Where(p => p.Valid()).Count();
             Console.WriteLine(result);
         }
 
@@ -53,11 +52,15 @@ namespace Client.Solutions
         {
             public string Phrase { get; private set; }
             public PasswordPolicy Policy { get; set; }
-            //public bool Valid()
-            //{
-            //    var  = Phrase.Count(c => c[Policy.FirstPosition] == Char);
-            //    return Policy.FirstPosition <= count && count <= Policy.SecondPosition;
-            //}
+
+            public bool Valid()
+            {
+                var valid = false;
+                if (Phrase[Policy.FirstPosition - 1].ToString() == Policy.Char) valid = !valid;
+                if (Phrase[Policy.SecondPosition - 1].ToString() == Policy.Char) valid = !valid;
+
+                return valid;
+            }
 
             public Password(string pw) => Phrase = pw;
         }
@@ -69,11 +72,11 @@ namespace Client.Solutions
             public int SecondPosition { get; set; }
             public PasswordPolicy()
             { }
-            public PasswordPolicy(string ch, int countMin, int countMax)
+            public PasswordPolicy(string ch, int firstPosition, int secondPosition)
             {
                 Char = ch;
-                FirstPosition = countMin;
-                SecondPosition = countMax;
+                FirstPosition = firstPosition;
+                SecondPosition = secondPosition;
             }
         }
     }
