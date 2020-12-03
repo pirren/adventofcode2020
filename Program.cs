@@ -10,7 +10,8 @@ namespace Client
         {
             var data = await ORM.ReadDataAsync();
 
-            ThirdAdvent.Solve(data);
+            var advent = new ThirdAdvent();
+            advent.Solve(data);
 
             Console.WriteLine("Goodbye!");
             Console.ReadLine();
