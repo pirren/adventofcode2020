@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
-namespace Client.Solutions
+namespace AOC2020.Day01
 {
-    public class FirstAdvent
+    public class Solution
     {
         private string[] numbers;
         public List<int> convertedNumbers;
@@ -13,15 +11,15 @@ namespace Client.Solutions
         public int GoalSum { get; private set; }
         public int Result { get; set; }
 
-        public FirstAdvent(int goalSum) => this.GoalSum = goalSum;
+        public Solution(int goalSum) => this.GoalSum = goalSum;
 
-        public FirstAdvent Start()
+        public Solution Start()
         {
             numbers = File.ReadAllLines(@"numbers.txt");
             return this;
         }
 
-        public FirstAdvent Convert()
+        public Solution Convert()
         {
             convertedNumbers = new List<int>();
             foreach (var item in numbers)
@@ -29,11 +27,11 @@ namespace Client.Solutions
             return this;
         }
 
-        public FirstAdvent Solve()
+        public Solution Solve()
         {
-            for(int i = 0; i < convertedNumbers.Count; i++)
-                for(int j = i + 1; j < convertedNumbers.Count; j++)
-                    for  (int k = j + 1; k < convertedNumbers.Count; k++)
+            for (int i = 0; i < convertedNumbers.Count; i++)
+                for (int j = i + 1; j < convertedNumbers.Count; j++)
+                    for (int k = j + 1; k < convertedNumbers.Count; k++)
                     {
                         if (convertedNumbers[i] + convertedNumbers[j] + convertedNumbers[k] == GoalSum)
                             Result = convertedNumbers[i] * convertedNumbers[j] * convertedNumbers[k];
@@ -41,5 +39,5 @@ namespace Client.Solutions
             return this;
         }
     }
-    
+
 }

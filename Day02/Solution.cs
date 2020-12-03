@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 
-namespace Client.Solutions
+namespace AOC2020.Day02
 {
-    public static class SecondAdvent
+    class Day02
     {
         internal static void Solve(string[] data)
         {
@@ -39,7 +37,7 @@ namespace Client.Solutions
         {
             var str = string.Empty;
             var i = 0;
-            while(Int32.TryParse(line[i].ToString(), out _))
+            while (Int32.TryParse(line[i].ToString(), out _))
             {
                 str += line[i];
                 i++;
