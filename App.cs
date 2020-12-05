@@ -1,5 +1,7 @@
 ﻿using AOC2020.Lib;
+using AOC2020.Solutions;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace AOC2020.App
@@ -8,9 +10,10 @@ namespace AOC2020.App
     {
         static void Main(string[] args)
         {
-            var solver = new AOC2020.Day03.Solution();
+            var solvers = new List<ISolver> { new Day01(), new Day03(), new Day04() };
+            var solver = new Day04();
 
-            foreach (var solution in solver.Solve(File.ReadAllText("Day03/input.in")))
+            foreach (var solution in solver.Solve())
                 Console.WriteLine(solution);
 
             Console.WriteLine("Goodbye!");

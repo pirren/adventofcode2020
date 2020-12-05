@@ -1,28 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace AOC2020.Lib
 {
     class ProblemName : Attribute
     {
-        public readonly string Name;
+        public readonly string name;
+        public readonly string day;
+
         public ProblemName(string name, string day)
         {
-            this.Name = name;
+            this.name = name;
+            this.day = day;
         }
     }
 
     public interface ISolver
     {
-        IEnumerable<object> Solve(string input);
+        IEnumerable<object> Solve();
+        string GetData();
+        // todo: implement
+        //IEnumerable<object> Test(string input);
     }
 
     static class ISolverExtensions
     {
-        public static string GetInput(this ISolver solver)
-        {
-            return File.ReadAllText(@"input.in");
-        } 
+
     }
 }
