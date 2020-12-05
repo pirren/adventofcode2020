@@ -12,19 +12,13 @@ namespace AOC2020.Solutions
     [ProblemName("Passport Processing", "Day04")]
     class Day04 : ISolver
     {
-        public void Run()
-        {
-            foreach (var solution in this.Solve())
-                Console.WriteLine(solution);
-        }
+        public string GetData => File.ReadAllText("Indata/day-04.in");
 
         public IEnumerable<object> Solve()
         {
-            yield return PartOne(this.GetData());
-            yield return PartTwo(this.GetData());
+            yield return PartOne(GetData);
+            yield return PartTwo(GetData);
         }
-
-        public string GetData() => File.ReadAllText("Indata/day-04.in");
 
         long PartOne(string input) => Part1(input);
         long PartTwo(string input) => Part2(input);
@@ -90,15 +84,9 @@ namespace AOC2020.Solutions
 
         int ValidateYear(string field, int min, int max)
         {
-            try
-            {
-                var year = int.Parse(field.Substring(4, 4));
-                if (max >= year && year >= min && field.Length == 8)
-                    return 1;
-                else 
-                    return 0;
-            }
-            catch { return 0; }
+            if(int.TryParse(field.Substring(4,4), out int n))
+                if (max >= n && n >= min && field.Length == 8) return 1;
+            return 0;
         }
     }
 }

@@ -9,21 +9,14 @@ namespace AOC2020.Solutions
     [ProblemName("Report Repair", "Day01")]
     class Day01 : ISolver
     {
-        public void Run()
-        {
-            foreach(var solution in this.Solve()) 
-                Console.WriteLine(solution);
-        }  
-        
+        public string GetData => File.ReadAllText("Indata/day-01.in");
 
         public IEnumerable<object> Solve()
         {
-            yield return Solve(this.GetData(), false);
-            yield return Solve(this.GetData());
+            yield return Solve(GetData, false);
+            yield return Solve(GetData);
         }
         
-        public string GetData() => File.ReadAllText("Indata/day-01.in");
-
         long Solve(string data, bool fullScope = true)
         {
             var entries = data.Split(Environment.NewLine);
@@ -32,7 +25,6 @@ namespace AOC2020.Solutions
                 {
                     if(!fullScope)
                     {
-
                         if (int.Parse(entries[i]) + int.Parse(entries[j]) == 2020)
                             return int.Parse(entries[i]) * int.Parse(entries[j]);
                     }

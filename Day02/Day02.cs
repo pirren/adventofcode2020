@@ -11,36 +11,30 @@ namespace AOC2020.Solutions
     [ProblemName("Password Philosophy", "Day02")]
     class Day02 : ISolver
     {
-        public void Run()
-        {
-            foreach (var solution in this.Solve())
-                Console.WriteLine(solution);
-        }
+        public string GetData => File.ReadAllText("Indata/day-02.in");
 
         public IEnumerable<object> Solve()
         {
-            yield return PartOne(this.GetData());
-            yield return PartTwo(this.GetData());
+            yield return PartOne(GetData);
+            yield return PartTwo(GetData);
         }
-
-        public string GetData() => File.ReadAllText("Indata/day-02.in");
 
         long PartOne(string data)
         {
-            long validPasswords = 0L;
+            long passwords = 0L;
             var dataList = data.Split(Environment.NewLine);
             foreach (var pwRaw in dataList)
             {
                 var pw = new Password(pwRaw);
                 var uniques = pw.Phrase.Count(e => e == pw.Char);
-                if (uniques >= pw.FirstNumber && uniques <= pw.SecondNumber) validPasswords++;
+                if (uniques >= pw.FirstNumber && uniques <= pw.SecondNumber) passwords++;
             }
-            return validPasswords;
+            return passwords;
         }
 
         long PartTwo(string data)
         {
-            long validPasswords = 0L;
+            long passwords = 0L;
             var dataList = data.Split(Environment.NewLine);
             foreach (var pwRaw in dataList)
             {
@@ -48,10 +42,9 @@ namespace AOC2020.Solutions
                 var first = pw.Phrase[pw.FirstNumber - 1] == pw.Char;
                 var second = pw.Phrase[pw.SecondNumber - 1] == pw.Char;
 
-                if (first ^ second)
-                    validPasswords++;
+                if (first ^ second) passwords++;
             }
-            return validPasswords;
+            return passwords;
         }
 
         class Password
@@ -60,7 +53,6 @@ namespace AOC2020.Solutions
             public int SecondNumber { get; set; }
             public char Char { get; set; }
             public string Phrase { get; set; }
-
             private readonly string regexPattern = @"([0-9]{1,2})|[a-z]{1}(?=\:)";
 
             public Password(string rawData)

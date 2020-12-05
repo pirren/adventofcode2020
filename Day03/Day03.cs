@@ -10,19 +10,13 @@ namespace AOC2020.Solutions
     [ProblemName("Tobogan Trajectory", "Day03")]
     class Day03 : ISolver
     {
-        public void Run()
-        {
-            foreach (var solution in this.Solve())
-                Console.WriteLine(solution);
-        }
+        public string GetData => File.ReadAllText("Indata/day-03.in");
 
         public IEnumerable<object> Solve()
         {
-            yield return PartOne(this.GetData());
-            yield return PartTwo(this.GetData());
+            yield return PartOne(GetData);
+            yield return PartTwo(GetData);
         }
-
-        public string GetData() => File.ReadAllText("Indata/day-03.in");
 
         long PartOne(string input) => CalcSlope(input, (1, 3));
         long PartTwo(string input) => CalcSlope(input, (1, 1), (1, 3), (1, 5), (1, 7), (2, 1));
@@ -36,17 +30,14 @@ namespace AOC2020.Solutions
             {
                 var (iright, idown) = (right, down);
                 var trees = 0;
-
                 while (idown < map.Length)
                 {
                     if (map[idown][iright % mapWidth] == '#')
                         trees++;
                     (iright, idown) = (iright + right, idown + down);
                 }
-
                 treesEncountered *= trees;
             }
-
             return treesEncountered;
         }
     }

@@ -18,7 +18,7 @@
     <None Update="Indata\day-04.in">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Day04\test.in">
+    <None Update="Indata\day-05.in">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
