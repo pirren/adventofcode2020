@@ -11,11 +11,10 @@ namespace AOC2020.Solutions
     {
         public void Run()
         {
-            foreach(var solution in this.Solve())
-            {
+            foreach(var solution in this.Solve()) 
                 Console.WriteLine(solution);
-            }
-        }
+        }  
+        
 
         public IEnumerable<object> Solve()
         {

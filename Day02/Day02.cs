@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AOC2020.Solutions
 {
+    [ProblemName("Password Philosophy", "Day02")]
     class Day02 : ISolver
     {
         public void Run()
