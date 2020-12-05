@@ -3,12 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AOC2020.Solutions
 {
     [ProblemName("Tobogan Trajectory", "Day03")]
     class Day03 : ISolver
     {
+        public void Run()
+        {
+            foreach (var solution in this.Solve())
+                Console.WriteLine(solution);
+        }
+
         public IEnumerable<object> Solve()
         {
             yield return PartOne(this.GetData());

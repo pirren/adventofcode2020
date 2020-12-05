@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AOC2020.Lib
 {
@@ -17,10 +18,9 @@ namespace AOC2020.Lib
 
     public interface ISolver
     {
+        void Run();
         IEnumerable<object> Solve();
         string GetData();
-        // todo: implement
-        //IEnumerable<object> Test(string input);
     }
 
     static class ISolverExtensions

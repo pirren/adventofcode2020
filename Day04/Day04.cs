@@ -5,17 +5,25 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace AOC2020.Solutions
 {
     [ProblemName("Passport Processing", "Day04")]
     class Day04 : ISolver
     {
+        public void Run()
+        {
+            foreach (var solution in this.Solve())
+                Console.WriteLine(solution);
+        }
+
         public IEnumerable<object> Solve()
         {
             yield return PartOne(this.GetData());
             yield return PartTwo(this.GetData());
         }
+
         public string GetData() => File.ReadAllText("Indata/day-04.in");
 
         long PartOne(string input) => Part1(input);
@@ -62,43 +70,33 @@ namespace AOC2020.Solutions
                                 validationPoints++; 
                             break;
                         case "hcl:":
-                            validationPoints += ValidHairColor(field); break;
+                            if (field.Replace("hcl:", "").Length == 7 && int.TryParse(field.Substring(5, 6), System.Globalization.NumberStyles.HexNumber, null, out _))
+                                validationPoints++;
+                            break;
                         case "ecl:":
                             if (new string[] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" }.Contains(field.Substring(4, 3)))
                                 validationPoints++;
                             break;
                         case "pid:":
-                            if (field.Length != 13) break;
-                            if (int.TryParse(field.Substring(4, 9), out _))
+                            if (field.Length == 13 && int.TryParse(field.Substring(4, 9), out _))
                                 validationPoints++;
                             break;
                     }
                 }
                 if (validationPoints >= 7) validCount++;
             }
-
             return validCount;
-        }
-
-        int ValidHairColor(string field)
-        {
-            if (field.Replace("hcl:", "").Length != 7) return 0;
-            try
-            {
-                var f = Int32.Parse(field.Substring(5, 6), System.Globalization.NumberStyles.HexNumber);
-                return 1;
-            } catch { return 0; }
         }
 
         int ValidateYear(string field, int min, int max)
         {
-            if (field.Length != 8) return 0;
             try
             {
                 var year = int.Parse(field.Substring(4, 4));
-                if (max >= year && year >= min)
+                if (max >= year && year >= min && field.Length == 8)
                     return 1;
-                else return 0;
+                else 
+                    return 0;
             }
             catch { return 0; }
         }

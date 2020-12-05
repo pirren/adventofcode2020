@@ -2,17 +2,27 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace AOC2020.Solutions
 {
     [ProblemName("Report Repair", "Day01")]
     class Day01 : ISolver
     {
+        public void Run()
+        {
+            foreach(var solution in this.Solve())
+            {
+                Console.WriteLine(solution);
+            }
+        }
+
         public IEnumerable<object> Solve()
         {
             yield return Solve(this.GetData(), false);
             yield return Solve(this.GetData());
         }
+        
         public string GetData() => File.ReadAllText("Indata/day-01.in");
 
         long Solve(string data, bool fullScope = true)
