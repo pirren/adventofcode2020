@@ -30,7 +30,7 @@ namespace AOC2020.Solutions
             return sum;
         }
 
-        private long CollectiveAnswers(string[] data, ref int index)
+        long CollectiveAnswers(string[] data, ref int index)
         {
             string answers = "";
             int people = 0;
@@ -55,7 +55,7 @@ namespace AOC2020.Solutions
             return sum;
         }
 
-        int UniqueAnswers(string[] data, ref int index)
+        long UniqueAnswers(string[] data, ref int index)
         {
             string answers = "";
             while (index < data.Length && !string.IsNullOrWhiteSpace(data[index]))
