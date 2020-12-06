@@ -29,12 +29,19 @@ namespace AOC2020.Lib
         static Stopwatch Stopwatch { get; set; }
         public static void Run(this ISolver solver)
         {
+            Write("\n===========================\n");
             Stopwatch = new Stopwatch();
             Stopwatch.Start();
             solver.Solve().ToList().ForEach(e => { Console.WriteLine($"Result: {e}"); });
             Stopwatch.Stop();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Finished in {Stopwatch.ElapsedMilliseconds} ms");
+            Write($"Finished in {Stopwatch.ElapsedMilliseconds} ms", ConsoleColor.Green);
+            Write("\n===========================\n");
+        }
+        // to do: place this somewhere else
+        public static void Write(string text = "", ConsoleColor color = ConsoleColor.Gray)
+        {
+            Console.ForegroundColor = color;
+            Console.Write(text);
             Console.ForegroundColor = ConsoleColor.Gray;
         }
     }

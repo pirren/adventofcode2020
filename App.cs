@@ -13,17 +13,19 @@ namespace AOC2020.App
             var app = new AppRunner();
 
             app.Start();
-            while (app.Running) { app.Run(); }
+            app.RunProblem(6);
+            Console.ReadLine();
+            //while (app.Running) { app.Run(); }
         }
 
         class AppRunner
         {
             public bool Running { get; private set; }
             public string Input { get; set; }
+            readonly List<string> killCommands = new List<string> { "q", "quit", "exit", "0" };
 
             public AppRunner() => Running = true; 
 
-            readonly List<string> quitCommands = new List<string> { "q", "quit", "exit" };
 
             public void Start() => Console.WriteLine(SystemStrings["greeting"]);
 
@@ -34,7 +36,7 @@ namespace AOC2020.App
                     RunProblem(choice);
                 if (Input.ToLower() == "a")
                     RunAll();
-                if (Input.ToLower().Any(q => quitCommands.Contains(q.ToString()))) Running = false;
+                if (killCommands.Any(e => e.Contains(Input.ToLower()))) Running = false;
             }
 
             private void RunAll()
@@ -43,9 +45,9 @@ namespace AOC2020.App
                     a.Invoke();
             }
 
-            private void RunProblem(int choice) 
+            public void RunProblem(int choice) // set to pvt in production
             {
-                if (choice < Actions.Count && choice > 0) Actions[choice - 1].Invoke();
+                if (choice <= Actions.Count && choice > 0) Actions[choice - 1].Invoke();
             }
         }
 
@@ -56,6 +58,7 @@ namespace AOC2020.App
             new Day03(),
             new Day04(),
             new Day05(),
+            new Day06(),
         };
 
         static readonly List<Action> Actions = new List<Action>
@@ -65,12 +68,13 @@ namespace AOC2020.App
             new Action(Solvers[2].Run),
             new Action(Solvers[3].Run),
             new Action(Solvers[4].Run),
+            new Action(Solvers[5].Run),
         };
 
         static Dictionary<string, string> SystemStrings = new Dictionary<string, string>
         {
             { "greeting","Advent of Code 2020 version"},
-            { "actions","Enter a problem[1-25?], or [a] for all"},
+            { "actions","\nEnter a problem[1-25?], or [a] for all"},
         };
     }
 }
