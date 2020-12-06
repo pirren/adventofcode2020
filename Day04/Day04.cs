@@ -13,6 +13,8 @@ namespace AOC2020.Solutions
     class Day04 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-04.in");
+        public string ProblemName { get => "Passport Processing"; }
+        public string Day { get => "Day04"; }
 
         public IEnumerable<object> Solve()
         {

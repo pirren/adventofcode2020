@@ -13,9 +13,7 @@ namespace AOC2020.App
             var app = new AppRunner();
 
             app.Start();
-            app.RunProblem(6);
-            Console.ReadLine();
-            //while (app.Running) { app.Run(); }
+            while (app.Running) { app.Run(); }
         }
 
         class AppRunner
@@ -45,7 +43,7 @@ namespace AOC2020.App
                     a.Invoke();
             }
 
-            public void RunProblem(int choice) // set to pvt in production
+            private void RunProblem(int choice) // set to pvt in production
             {
                 if (choice <= Actions.Count && choice > 0) Actions[choice - 1].Invoke();
             }
@@ -63,12 +61,12 @@ namespace AOC2020.App
 
         static readonly List<Action> Actions = new List<Action>
         {
-            new Action(Solvers[0].Run),
-            new Action(Solvers[1].Run),
-            new Action(Solvers[2].Run),
-            new Action(Solvers[3].Run),
-            new Action(Solvers[4].Run),
-            new Action(Solvers[5].Run),
+            new Action(Solvers[0].RunSolutions),
+            new Action(Solvers[1].RunSolutions),
+            new Action(Solvers[2].RunSolutions),
+            new Action(Solvers[3].RunSolutions),
+            new Action(Solvers[4].RunSolutions),
+            new Action(Solvers[5].RunSolutions),
         };
 
         static Dictionary<string, string> SystemStrings = new Dictionary<string, string>

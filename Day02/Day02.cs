@@ -12,6 +12,8 @@ namespace AOC2020.Solutions
     class Day02 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-02.in");
+        public string ProblemName { get => "Password Philosophy"; }
+        public string Day { get => "Day02"; }
 
         public IEnumerable<object> Solve()
         {
