@@ -10,43 +10,10 @@ namespace AOC2020.App
     {
         static void Main(string[] args)
         {
-            var app = new AppRunner();
+            var app = new AppRunner(Actions, SystemStrings);
 
             app.Start();
             while (app.Running) { app.Run(); }
-        }
-
-        class AppRunner
-        {
-            public bool Running { get; private set; }
-            public string Input { get; set; }
-            readonly List<string> killCommands = new List<string> { "q", "quit", "exit", "0" };
-
-            public AppRunner() => Running = true; 
-
-
-            public void Start() => Console.WriteLine(SystemStrings["greeting"]);
-
-            public void Run()
-            {
-                Console.WriteLine(SystemStrings["actions"]);
-                if (int.TryParse(Input = Console.ReadLine(), out int choice))
-                    RunProblem(choice);
-                if (Input.ToLower() == "a")
-                    RunAll();
-                if (killCommands.Any(e => e.Contains(Input.ToLower()))) Running = false;
-            }
-
-            private void RunAll()
-            {
-                foreach (Action a in Actions)
-                    a.Invoke();
-            }
-
-            private void RunProblem(int choice) // set to pvt in production
-            {
-                if (choice <= Actions.Count && choice > 0) Actions[choice - 1].Invoke();
-            }
         }
 
         static readonly List<ISolver> Solvers = new List<ISolver>
@@ -69,7 +36,7 @@ namespace AOC2020.App
             new Action(Solvers[5].RunSolutions),
         };
 
-        static Dictionary<string, string> SystemStrings = new Dictionary<string, string>
+        public static Dictionary<string, string> SystemStrings = new Dictionary<string, string>
         {
             { "greeting","Advent of Code 2020 version"},
             { "actions","\nEnter a problem[1-25?], or [a] for all"},

@@ -25,30 +25,4 @@ namespace AOC2020.Lib
         string ProblemName { get; }
         string Day { get; }
     }
-
-    static class ISolverExtensions
-    {
-        static Stopwatch Stopwatch { get; set; }
-        public static void RunSolutions(this ISolver solver)
-        {
-            Write("\n===========================\n");
-            Write($"Problem name: ");
-            Write($"{ solver.ProblemName }\n\n", ConsoleColor.Red);
-            Stopwatch = new Stopwatch();
-            Stopwatch.Start();
-            solver.Solve().ToList().ForEach(e => { 
-                Console.WriteLine($"Result: {e}"); 
-            });
-            Stopwatch.Stop();
-            Write($"\nFinished in {Stopwatch.ElapsedMilliseconds} ms", ConsoleColor.Green);
-            Write("\n===========================\n");
-        }
-
-        public static void Write(string text = "", ConsoleColor color = ConsoleColor.Gray)
-        {
-            Console.ForegroundColor = color;
-            Console.Write(text);
-            Console.ForegroundColor = ConsoleColor.Gray;
-        }
-    }
 }
