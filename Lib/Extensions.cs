@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace AOC2020.Lib
 {
     static class Extensions
     {
         static Stopwatch Stopwatch { get; set; }
-        public static void RunSolutions(this ISolver solver)
+        public static void ProcessSolutions(this ISolver solver)
         {
             Write("\n========================================\n");
             Write($"Problem name: ");
@@ -19,13 +17,14 @@ namespace AOC2020.Lib
             Stopwatch = new Stopwatch();
             Stopwatch.Start();
             var i = 1;
-            foreach(var solution in solver.Solve())
+            foreach (var solution in solver.Solve())
             {
                 Console.WriteLine($"Part {i}: {solution}");
                 i = 1 + i;
             }
             Stopwatch.Stop();
-            Write($"\nFinished in {Stopwatch.ElapsedMilliseconds} ms", ConsoleColor.Green);
+            Write($"\nFinished in {Stopwatch.ElapsedMilliseconds} ms"
+                , (Stopwatch.ElapsedMilliseconds < 40) ? ConsoleColor.Green : ConsoleColor.Red);
             Write("\n========================================\n");
         }
 

@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace AOC2020.Solutions
 {
@@ -31,10 +29,10 @@ namespace AOC2020.Solutions
         {
             long validCount = 0L;
             var data = input.Split("\r\n\r\n");
-            var pattern = 
+            var pattern =
                 string.Join("|", labels
                 .Select(e => Regex.Escape(e)));
-            for(int i = 0; i < data.Length; i++)
+            for (int i = 0; i < data.Length; i++)
                 if (Regex.Matches(data[i], pattern).Count >= 7) validCount++;
             return validCount;
         }
@@ -47,11 +45,11 @@ namespace AOC2020.Solutions
             for (int i = 0; i < data.Length; i++)
                 data[i] = data[i].Replace("\r\n", " ");
 
-            for (int i= 0; i < data.Length; i++)
+            for (int i = 0; i < data.Length; i++)
             {
                 int validationPoints = 0;
                 var fields = data[i].Split(' ');
-                foreach(var field in fields)
+                foreach (var field in fields)
                 {
                     switch (field.Substring(0, 4))
                     {
@@ -63,7 +61,7 @@ namespace AOC2020.Solutions
                             validationPoints += ValidateYear(field, 2020, 2030); break;
                         case "hgt:":
                             if (Regex.Match(field.Replace("hgt:", ""), @"^(59in|7[0-6]in|6[0-9]in)$|^(1[5-8][0-9]cm|^19[0-3]cm)$").Success)
-                                validationPoints++; 
+                                validationPoints++;
                             break;
                         case "hcl:":
                             if (field.Replace("hcl:", "").Length == 7 && int.TryParse(field.Substring(5, 6), System.Globalization.NumberStyles.HexNumber, null, out _))
@@ -86,7 +84,7 @@ namespace AOC2020.Solutions
 
         int ValidateYear(string field, int min, int max)
         {
-            if(int.TryParse(field.Substring(4,4), out int n))
+            if (int.TryParse(field.Substring(4, 4), out int n))
                 if (max >= n && n >= min && field.Length == 8) return 1;
             return 0;
         }

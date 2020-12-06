@@ -1,7 +1,5 @@
 ﻿using AOC2020.Lib;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using System.Linq;
 
@@ -34,7 +32,7 @@ namespace AOC2020.Solutions
         {
             string answers = "";
             int people = 0;
-            while(index < data.Length && !string.IsNullOrWhiteSpace(data[index]))
+            while (index < data.Length && !string.IsNullOrWhiteSpace(data[index]))
             {
                 answers += data[index];
                 people++;
@@ -43,7 +41,6 @@ namespace AOC2020.Solutions
             index++;
             return answers.GroupBy(x => x).Where(x => x.Count() == people).Count();
         }
-
 
         long PartOne(string input)
         {

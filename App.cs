@@ -2,7 +2,6 @@
 using AOC2020.Solutions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AOC2020.App
 {
@@ -28,12 +27,12 @@ namespace AOC2020.App
 
         static readonly List<Action> Actions = new List<Action>
         {
-            new Action(Solvers[0].RunSolutions),
-            new Action(Solvers[1].RunSolutions),
-            new Action(Solvers[2].RunSolutions),
-            new Action(Solvers[3].RunSolutions),
-            new Action(Solvers[4].RunSolutions),
-            new Action(Solvers[5].RunSolutions),
+            new Action(Solvers[0].ProcessSolutions),
+            new Action(Solvers[1].ProcessSolutions),
+            new Action(Solvers[2].ProcessSolutions),
+            new Action(Solvers[3].ProcessSolutions),
+            new Action(Solvers[4].ProcessSolutions),
+            new Action(Solvers[5].ProcessSolutions),
         };
 
         public static Dictionary<string, string> SystemStrings = new Dictionary<string, string>

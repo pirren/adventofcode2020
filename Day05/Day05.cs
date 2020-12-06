@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace AOC2020.Solutions
 {
@@ -21,11 +20,11 @@ namespace AOC2020.Solutions
         }
 
         int PartOne(string data) => ParseSeats(data).Max();
-        int PartTwo(string data) 
+        int PartTwo(string data)
         {
             var seats = ParseSeats(data).OrderBy(s => s);
             var found = seats.First();
-            foreach(var seat in seats.Skip(1))
+            foreach (var seat in seats.Skip(1))
             {
                 if (seat - found > 1)
                 {

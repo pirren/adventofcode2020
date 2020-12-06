@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AOC2020.Lib
 {
@@ -12,8 +11,8 @@ namespace AOC2020.Lib
         readonly List<string> killCommands = new List<string> { "q", "quit", "exit", "0" };
 
         private readonly List<Action> Actions;
-        private readonly Dictionary<string,string> SystemStrings;
-        public AppRunner(List<Action> actions, Dictionary<string,string> systemStrings)
+        private readonly Dictionary<string, string> SystemStrings;
+        public AppRunner(List<Action> actions, Dictionary<string, string> systemStrings)
         {
             SystemStrings = systemStrings;
             Actions = actions;
