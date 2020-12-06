@@ -8,27 +8,27 @@ namespace AOC2020.Lib
     {
         public bool Running { get; private set; }
         public string Input { get; set; }
+
         readonly List<string> killCommands = new List<string> { "q", "quit", "exit", "0" };
 
         private readonly List<Action> Actions;
-        private readonly Dictionary<string, string> SystemStrings;
-        public AppRunner(List<Action> actions, Dictionary<string, string> systemStrings)
+        public AppRunner(List<Action> actions)
         {
-            SystemStrings = systemStrings;
             Actions = actions;
             Running = true;
         }
 
-        public void Start() => Console.WriteLine(SystemStrings["greeting"]);
+        public void Start() => Console.WriteLine(SystemStrings.Greeting);
 
         public void Run()
         {
-            Console.WriteLine(SystemStrings["actions"]);
+            Console.WriteLine(SystemStrings.Actions);
             if (int.TryParse(Input = Console.ReadLine(), out int choice))
                 RunProblem(choice);
             if (Input.ToLower() == "a")
                 RunAll();
-            if (killCommands.Any(e => e.Contains(Input.ToLower()))) Running = false;
+            if (killCommands.Any(e => e == Input.ToLower()))
+                Running = false;
         }
 
         private void RunAll()
@@ -37,7 +37,7 @@ namespace AOC2020.Lib
                 a.Invoke();
         }
 
-        private void RunProblem(int choice) // set to pvt in production
+        private void RunProblem(int choice)
         {
             if (choice <= Actions.Count && choice > 0) Actions[choice - 1].Invoke();
         }

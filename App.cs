@@ -9,8 +9,7 @@ namespace AOC2020.App
     {
         static void Main(string[] args)
         {
-            var app = new AppRunner(Actions, SystemStrings);
-
+            var app = new AppRunner(Actions);
             app.Start();
             while (app.Running) { app.Run(); }
         }
@@ -33,12 +32,6 @@ namespace AOC2020.App
             new Action(Solvers[3].ProcessSolutions),
             new Action(Solvers[4].ProcessSolutions),
             new Action(Solvers[5].ProcessSolutions),
-        };
-
-        public static Dictionary<string, string> SystemStrings = new Dictionary<string, string>
-        {
-            { "greeting","Advent of Code 2020 version"},
-            { "actions","\nEnter a problem[1-25?], or [a] for all"},
         };
     }
 }
