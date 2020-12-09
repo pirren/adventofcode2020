@@ -66,7 +66,7 @@ namespace AOC2020.Solutions
             return list;
         }
 
-        List<string> GetNodes(string target) 
+        List<string> GetBags(string target) 
             => rules
             .Where(e => e.Key == target)
             .Select(s => s.Value).FirstOrDefault();
@@ -75,15 +75,15 @@ namespace AOC2020.Solutions
         long CountBags(string target) 
         {
             long count = 0L;
-            var children = GetNodes(target); 
-            if (children == null) return count;
+            var bags = GetBags(target); 
+            if (bags == null) return count;
 
-            foreach(var child in children)
+            foreach(var bag in bags)
             {
-                int childCount = int.Parse(child[0].ToString());
-                count += childCount * CountBags(child[2..]);
+                int childCount = int.Parse(bag[0].ToString());
+                count += childCount * CountBags(bag[2..]);
             }
-            count += children.Select(s => int.Parse(s[0].ToString())).Sum();
+            count += bags.Select(s => int.Parse(s[0].ToString())).Sum();
 
             return count;
         }
