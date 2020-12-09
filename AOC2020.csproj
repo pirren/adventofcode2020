@@ -24,6 +24,9 @@
     <None Update="Indata\day-06.in">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Indata\day-08.in">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Indata\day-07.in">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

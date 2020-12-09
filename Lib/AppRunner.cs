@@ -6,40 +6,36 @@ namespace AOC2020.Lib
 {
     public class AppRunner
     {
-        public bool Running { get; private set; }
-        public string Input { get; set; }
+        public bool Active { get; private set; } = true;
+        public string Input { get; private set; }
 
         readonly List<string> killCommands = new List<string> { "q", "quit", "exit", "0" };
 
-        private readonly List<Action> Actions;
-        public AppRunner(List<Action> actions)
-        {
-            Actions = actions;
-            Running = true;
-        }
+        private readonly List<Action> actions;
+        public AppRunner(List<Action> actions) => this.actions = actions;
 
-        public void Start() => Console.WriteLine(SystemStrings.Greeting);
+        public void Start() => System.Write($"{System.Greeting}\n");
 
         public void Run()
         {
-            Console.WriteLine(SystemStrings.Actions);
+            System.Write($"{System.Actions}\n", ConsoleColor.DarkGreen);
             if (int.TryParse(Input = Console.ReadLine(), out int choice))
                 RunProblem(choice);
             if (Input.ToLower() == "a")
                 RunAll();
             if (killCommands.Any(e => e == Input.ToLower()))
-                Running = false;
+                Active = false;
         }
 
         private void RunAll()
         {
-            foreach (Action a in Actions)
+            foreach (Action a in actions)
                 a.Invoke();
         }
 
         private void RunProblem(int choice)
         {
-            if (choice <= Actions.Count && choice > 0) Actions[choice - 1].Invoke();
+            if (choice <= actions.Count && choice > 0) actions[choice - 1].Invoke();
         }
     }
 }

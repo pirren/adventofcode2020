@@ -9,9 +9,9 @@ namespace AOC2020.App
     {
         static void Main(string[] args)
         {
-            var app = new AppRunner(Actions);
-            app.Start();
-            while (app.Running) { app.Run(); }
+            AppRunner runner = new AppRunner(Actions);
+            runner.Start();
+            while (runner.Active) { runner.Run(); }
         }
 
         static readonly List<ISolver> Solvers = new List<ISolver>
@@ -23,6 +23,7 @@ namespace AOC2020.App
             new Day05(),
             new Day06(),
             new Day07(),
+            new Day08(),
         };
 
         static readonly List<Action> Actions = new List<Action>
@@ -34,6 +35,7 @@ namespace AOC2020.App
             new Action(Solvers[4].ProcessSolutions),
             new Action(Solvers[5].ProcessSolutions),
             new Action(Solvers[6].ProcessSolutions),
+            new Action(Solvers[7].ProcessSolutions),
         };
     }
 }

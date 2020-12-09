@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace AOC2020.Solutions
 {
@@ -65,12 +64,10 @@ namespace AOC2020.Solutions
             }
             return list;
         }
-
         List<string> GetBags(string target) 
             => rules
             .Where(e => e.Key == target)
             .Select(s => s.Value).FirstOrDefault();
-
 
         long CountBags(string target) 
         {
