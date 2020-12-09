@@ -10,7 +10,7 @@ namespace AOC2020.Solutions
     [ProblemName("Handy Haversacks", "Day07")]
     class Day07 : ISolver
     {
-        static Dictionary<string, List<string>> rules = new Dictionary<string, List<string>>();
+        static Dictionary<string, List<string>> rules;
         public string GetData => File.ReadAllText("Indata/day-07.in");
         public string ProblemName { get => "Handy Haversacks"; }
         public string Day { get => "Day07"; }
@@ -18,7 +18,7 @@ namespace AOC2020.Solutions
         public IEnumerable<object> Solve()
         {
             yield return PartOne(GetData);
-            //yield return PartTwo(GetData);
+            yield return PartTwo(GetData);
         }
 
         void ParseRules(string[] bags)
@@ -29,36 +29,63 @@ namespace AOC2020.Solutions
                     .Split(new string[] { " contain ", ", ", "." }, StringSplitOptions.RemoveEmptyEntries);
                 var values = new List<string>();
                 for (int i = 1; i < bagrules.Length; i++)
-                    values.Add(bagrules[i][2..]);
+                    values.Add(bagrules[i]);
                 if(bagrules[1] != "no other") rules.Add(bagrules[0], values);
             }
         }
 
         long PartOne(string input)
         {
+            rules = new Dictionary<string, List<string>>();
             var bags = input.Split("\r\n");
             ParseRules(bags);
-            return GetAllParents("shiny gold").Distinct().Count();
+            return CountContainers("shiny gold").Distinct().Count();
         }
 
-        List<string> GetAllParents(string target)
+        long PartTwo(string input)
         {
-            var containers = GetImmediateParents(target);
-            List<string> list = new List<string>(); 
-            foreach(var container in containers)
+            rules = new Dictionary<string, List<string>>();
+            var bags = input.Split("\r\n");
+            ParseRules(bags);
+            return CountBags("shiny gold");
+        }
+
+        List<string> GetParents(string target) => rules
+            .Where(e => e.Value.Select(e => e[2..]).Contains(target))
+            .Select(s => s.Key).ToList();
+
+        List<string> CountContainers(string target)
+        {
+            var containers = GetParents(target);
+            List<string> list = new List<string>();
+            foreach (var container in containers)
             {
                 list.Add(container);
-                list.AddRange(GetAllParents(container));
+                list.AddRange(CountContainers(container));
             }
             return list;
         }
 
-        List<string> GetImmediateParents(string target) => rules.Where(e => e.Value.Contains(target)).Select(s => s.Key).ToList();
+        List<string> GetNodes(string target) 
+            => rules
+            .Where(e => e.Key == target)
+            .Select(s => s.Value).FirstOrDefault();
 
-        //}"long PartTwo(string input)
-        //{
 
-        //    return 0L;
-        //}
+        long CountBags(string target) 
+        {
+            long count = 0L;
+            var children = GetNodes(target); 
+            if (children == null) return count;
+
+            foreach(var child in children)
+            {
+                int childCount = int.Parse(child[0].ToString());
+                count += childCount * CountBags(child[2..]);
+            }
+            count += children.Select(s => int.Parse(s[0].ToString())).Sum();
+
+            return count;
+        }
     }
 }
