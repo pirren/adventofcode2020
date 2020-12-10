@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace AOC2020.Solutions
 {
-    [ProblemName("Custom Customs", "Day06")]
     class Day06 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-06.in");

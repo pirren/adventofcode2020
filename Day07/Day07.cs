@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace AOC2020.Solutions
 {
-    [ProblemName("Handy Haversacks", "Day07")]
     class Day07 : ISolver
     {
         static Dictionary<string, List<string>> rules;

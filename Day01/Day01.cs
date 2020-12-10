@@ -5,7 +5,6 @@ using System.IO;
 
 namespace AOC2020.Solutions
 {
-    [ProblemName("Report Repair", "Day01")]
     class Day01 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-01.in");

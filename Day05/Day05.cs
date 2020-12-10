@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace AOC2020.Solutions
 {
-    [ProblemName("Binary Boarding", "Day05")]
     class Day05 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-05.in");

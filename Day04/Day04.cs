@@ -7,7 +7,6 @@ using System.Text.RegularExpressions;
 
 namespace AOC2020.Solutions
 {
-    [ProblemName("Passport Processing", "Day04")]
     class Day04 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-04.in");
