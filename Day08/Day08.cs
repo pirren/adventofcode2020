@@ -6,10 +6,8 @@ using System.Linq;
 
 namespace AOC2020.Solutions
 {
-    [ProblemName("Handheld Halting", "Day08")]
     class Day08 : ISolver
     {
-        static Dictionary<string, List<string>> rules;
         public string GetData => File.ReadAllText("Indata/day-08.in");
         public string ProblemName { get => "Handheld Halting"; }
         public string Day { get => "Day08"; }
@@ -22,78 +20,48 @@ namespace AOC2020.Solutions
 
         long PartOne(string input)
         {
-            long acc = 0L;
             program = input.Split(Environment.NewLine);
-
-            List<int> visited = new List<int>();
-            int i = 0;
-            while(i < program.Length)
-            {
-                if (visited.Contains(i)) 
-                    break;
-                visited.Add(i);
-                var instruction = program[i].Substring(0, 3);
-                var value = int.Parse(program[i][4..]);
-                if (instruction == "nop")
-                {
-                    i++;
-                    continue;
-                }
-                if (instruction == "acc")
-                {
-                    i++;
-                    acc += value;
-                }
-                if (instruction == "jmp")
-                    i += value;
-            }
-
-            return acc;
-        }
-
-        static string[] program;
-        long PartTwo(string input)
-        {
-            program = input.Split(Environment.NewLine);
-            List<int> tried = new List<int>();
-            var result = RecurseSolveLoop(program, ref tried);
+            var (result, _) = GetAccumulatorValue(program);
             return result;
         }
 
-        long RecurseSolveLoop(string[] program, ref List<int> tried)
+        static string[] program;
+
+        long PartTwo(string input)
+        {
+            program = input.Split(Environment.NewLine);
+            long acc = 0L;
+
+            for(int i= 0; i < program.Length; i++)
+            {
+                var newprog = (string[])program.Clone();
+                if (newprog[i].Substring(0, 3) == "nop")
+                    newprog[i] = $"jmp {newprog[i][4..]}";
+                else if (newprog[i].Substring(0, 3) == "jmp")
+                    newprog[i] = $"nop {newprog[i][4..]}";
+                var (result, clear) = GetAccumulatorValue(newprog, true);
+                if (clear) { acc = result; break; }
+            }
+            return acc;
+        }
+
+        (long, bool) GetAccumulatorValue(string[] program, bool correct = false)
         {
             long acc = 0L;
 
+            List<int> visited = new List<int>();
             int i = 0;
             while (i < program.Length)
             {
+                if (visited.Contains(i)) { correct = false; break; }
+                visited.Add(i);
                 var instruction = program[i].Substring(0, 3);
                 var value = int.Parse(program[i][4..]);
-                if (instruction == "nop")
-                {
-                    instruction = "jmp";
-                }
-                else if(instruction == "nop")
-                {
-                    i++;
-                    continue;
-                }
-                if (instruction == "acc")
-                {
-                    i++;
-                    acc += value;
-                }
-                if (instruction == "jmp")
-                {
-                    i++;
-                    continue;
-                }
-                else 
-                {
-                    i += value;
-                }
+                if (instruction == "nop") { i++; continue; }
+                if (instruction == "acc") { i++; acc += value; }
+                if (instruction == "jmp") i += value;
             }
-            return acc;
+            return (acc, correct);
         }
     }
 }
