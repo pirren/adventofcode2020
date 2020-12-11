@@ -2,11 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace AOC2020.Solutions
 {
-    class Day01 : ISolver
+    public class Day01 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-01.in");
         public string ProblemName { get => "Report Repair"; }

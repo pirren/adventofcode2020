@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace AOC2020.Solutions
 {
-    class Day02 : ISolver
+    public class Day02 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-02.in");
         public string ProblemName { get => "Password Philosophy"; }

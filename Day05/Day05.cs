@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace AOC2020.Solutions
 {
-    class Day05 : ISolver
+    public class Day05 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-05.in");
         public string ProblemName { get => "Binary Boarding"; }
@@ -18,11 +18,11 @@ namespace AOC2020.Solutions
             yield return PartTwo(GetData);
         }
 
-        int PartOne(string data) => ParseSeats(data).Max();
-        int PartTwo(string data)
+        long PartOne(string data) => ParseSeats(data).Max();
+        long PartTwo(string data)
         {
             var seats = ParseSeats(data).OrderBy(s => s);
-            var found = seats.First();
+            long found = seats.First();
             foreach (var seat in seats.Skip(1))
             {
                 if (seat - found > 1)

@@ -1,12 +1,11 @@
 ﻿using AOC2020.Lib;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System;
-using System.Linq;
 
 namespace AOC2020.Solutions
 {
-    class Day08 : ISolver
+    public class Day08 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-08.in");
         public string ProblemName { get => "Handheld Halting"; }
@@ -32,7 +31,7 @@ namespace AOC2020.Solutions
             program = input.Split(Environment.NewLine);
             long acc = 0L;
 
-            for(int i= 0; i < program.Length; i++)
+            for (int i = 0; i < program.Length; i++)
             {
                 var newprog = (string[])program.Clone();
                 if (newprog[i].Substring(0, 3) == "nop")

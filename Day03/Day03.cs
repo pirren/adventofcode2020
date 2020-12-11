@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace AOC2020.Solutions
 {
-    class Day03 : ISolver
+    public class Day03 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-03.in");
         public string ProblemName { get => "Tobogan Trajectory"; }

@@ -1,12 +1,12 @@
 ﻿using AOC2020.Lib;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System;
 using System.Linq;
 
 namespace AOC2020.Solutions
 {
-    class Day07 : ISolver
+    public class Day07 : ISolver
     {
         static Dictionary<string, List<string>> rules;
         public string GetData => File.ReadAllText("Indata/day-07.in");
@@ -28,7 +28,7 @@ namespace AOC2020.Solutions
                 var values = new List<string>();
                 for (int i = 1; i < bagrules.Length; i++)
                     values.Add(bagrules[i]);
-                if(bagrules[1] != "no other") rules.Add(bagrules[0], values);
+                if (bagrules[1] != "no other") rules.Add(bagrules[0], values);
             }
         }
 
@@ -63,18 +63,18 @@ namespace AOC2020.Solutions
             }
             return list;
         }
-        List<string> GetBags(string target) 
+        List<string> GetBags(string target)
             => rules
             .Where(e => e.Key == target)
             .Select(s => s.Value).FirstOrDefault();
 
-        long CountBags(string target) 
+        long CountBags(string target)
         {
             long count = 0L;
-            var bags = GetBags(target); 
+            var bags = GetBags(target);
             if (bags == null) return count;
 
-            foreach(var bag in bags)
+            foreach (var bag in bags)
             {
                 int childCount = int.Parse(bag[0].ToString());
                 count += childCount * CountBags(bag[2..]);

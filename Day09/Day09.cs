@@ -1,12 +1,11 @@
 ﻿using AOC2020.Lib;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System;
-using System.Linq;
 
 namespace AOC2020.Solutions
 {
-    class Day09 : ISolver
+    public class Day09 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-09.in");
         public string ProblemName { get => "Encoding Error"; }
@@ -24,7 +23,7 @@ namespace AOC2020.Solutions
         {
             var res = 0L;
             var program = input.Split(Environment.NewLine);
-            
+
             List<string> ls = new List<string>();
             var f = ls.PopAt(0);
 
