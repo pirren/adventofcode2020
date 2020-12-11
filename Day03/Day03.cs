@@ -9,8 +9,8 @@ namespace AOC2020.Solutions
     public class Day03 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-03.in");
-        public string ProblemName { get => "Tobogan Trajectory"; }
-        public string Day { get => "Day03"; }
+        public string ProblemName => "Tobogan Trajectory";
+        public string Day => "Day03";
 
         public IEnumerable<object> Solve()
         {

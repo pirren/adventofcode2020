@@ -9,8 +9,8 @@ namespace AOC2020.Solutions
     public class Day05 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-05.in");
-        public string ProblemName { get => "Binary Boarding"; }
-        public string Day { get => "Day05"; }
+        public string ProblemName => "Binary Boarding";
+        public string Day => "Day05";
 
         public IEnumerable<object> Solve()
         {

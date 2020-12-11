@@ -8,8 +8,8 @@ namespace AOC2020.Solutions
     public class Day08 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-08.in");
-        public string ProblemName { get => "Handheld Halting"; }
-        public string Day { get => "Day08"; }
+        public string ProblemName => "Handheld Halting";
+        public string Day => "Day08";
 
         public IEnumerable<object> Solve()
         {

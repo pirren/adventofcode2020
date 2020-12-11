@@ -10,8 +10,8 @@ namespace AOC2020.Solutions
     {
         static Dictionary<string, List<string>> rules;
         public string GetData => File.ReadAllText("Indata/day-07.in");
-        public string ProblemName { get => "Handy Haversacks"; }
-        public string Day { get => "Day07"; }
+        public string ProblemName => "Handy Haversacks";
+        public string Day => "Day07";
 
         public IEnumerable<object> Solve()
         {

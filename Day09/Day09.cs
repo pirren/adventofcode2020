@@ -8,8 +8,8 @@ namespace AOC2020.Solutions
     public class Day09 : ISolver
     {
         public string GetData => File.ReadAllText("Indata/day-09.in");
-        public string ProblemName { get => "Encoding Error"; }
-        public string Day { get => "Day09"; }
+        public string ProblemName => "Encoding Error";
+        public string Day => "Day09";
 
         public IEnumerable<object> Solve()
         {
