@@ -18,7 +18,7 @@ namespace AOC2020.Lib
 
         public void Run()
         {
-            System.Write($"{System.Actions}\n", ConsoleColor.DarkGreen);
+            System.Write($"{System.Actions(actions.Count)}\n", ConsoleColor.DarkGreen);
             if (int.TryParse(Input = Console.ReadLine(), out int choice))
                 RunProblem(choice);
             if (Input.ToLower() == "a")

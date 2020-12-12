@@ -24,6 +24,7 @@ namespace AOC2020.App
             new Day06(),
             new Day07(),
             new Day08(),
+            new Day09(),
         };
 
         static readonly List<Action> Actions = new List<Action>
@@ -36,6 +37,7 @@ namespace AOC2020.App
             new Action(Solvers[5].ProcessSolutions),
             new Action(Solvers[6].ProcessSolutions),
             new Action(Solvers[7].ProcessSolutions),
+            new Action(Solvers[8].ProcessSolutions),
         };
     }
 }

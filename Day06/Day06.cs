@@ -9,7 +9,7 @@ namespace AOC2020.Solutions
     {
         public string GetData => File.ReadAllText("Indata/day-06.in");
         public string ProblemName => "Custom Customs";
-        public string => "Day06";
+        public string Day => "Day06";
 
         public IEnumerable<object> Solve()
         {
